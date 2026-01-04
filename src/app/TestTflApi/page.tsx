@@ -20,7 +20,7 @@ export default async function TestTflApi() {
         className="w-full"
         defaultValue="item-1"
       >
-        {journey.legs.map((leg) => (
+        {journey.legs.map((leg: any) => (
           <AccordionItem
             key={`${leg.duration}${leg.instruction.summary}`}
             value={`${leg.duration}${leg.instruction.summary}`}
