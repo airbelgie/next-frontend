@@ -1,0 +1,6 @@
+ignoredBuiltDependencies:
+  - sharp
+
+onlyBuiltDependencies:
+  - aws-sdk
+  - lefthook
