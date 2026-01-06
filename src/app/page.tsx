@@ -8,63 +8,13 @@ import {
   Users,
 } from "lucide-react";
 import Link from "next/link";
-import { DarkModeToggle } from "@/components/DarkModeToggle";
+import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
-      {/* Navigation */}
-      <nav className="fixed top-0 z-50 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-zinc-900 to-zinc-700 dark:from-zinc-100 dark:to-zinc-300">
-              <Plane className="h-5 w-5 text-yellow-400" />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-              Air<span className="text-yellow-500">Belgie</span>
-            </span>
-          </div>
-
-          <div className="hidden items-center gap-8 md:flex">
-            <Link
-              href="#fleet"
-              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-            >
-              Fleet
-            </Link>
-            <Link
-              href="#routes"
-              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-            >
-              Routes
-            </Link>
-            <Link
-              href="#community"
-              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-            >
-              Community
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <DarkModeToggle />
-            <Link href="/login">
-              <Button variant="ghost" size="sm">
-                Log in
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button
-                size="sm"
-                className="bg-yellow-500 text-zinc-900 hover:bg-yellow-400"
-              >
-                Join Now
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16">

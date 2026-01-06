@@ -2,29 +2,60 @@
 
 import { GalleryVerticalEnd } from "lucide-react";
 import Image from "next/image";
-import type { FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import { type FormEvent, useState } from "react";
 import { LoginForm } from "@/components/LoginForm";
+import { useAuth } from "@/contexts/auth-context";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { login } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
 
     const formData = new FormData(event.currentTarget);
     const emailAddress = formData.get("email");
     const password = formData.get("password");
 
-    const response = await fetch(
-      "https://airbelgie.rbcdigital.co.uk/auth/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ emailAddress, password }),
-      },
-    );
+    try {
+      const response = await fetch(
+        "https://airbelgie.rbcdigital.co.uk/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ emailAddress, password }),
+        },
+      );
 
-    if (response.ok) {
-    } else {
-      // Handle errors
+      if (response.ok) {
+        const data = await response.json();
+
+        // Save auth state and redirect
+        login(data.accessToken, {
+          id: data.user?.id ?? data.userId ?? "",
+          email: emailAddress as string,
+          firstName: data.user?.firstName,
+          lastName: data.user?.lastName,
+        });
+
+        router.push("/");
+      } else {
+        const errorData = await response.json().catch(() => null);
+        setError(
+          errorData?.message ?? "Invalid email or password. Please try again.",
+        );
+      }
+    } catch {
+      setError(
+        "Unable to connect. Please check your connection and try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -41,7 +72,11 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
-            <LoginForm onSubmit={handleSubmit} />
+            <LoginForm
+              onSubmit={handleSubmit}
+              error={error}
+              isSubmitting={isSubmitting}
+            />
           </div>
         </div>
       </div>
