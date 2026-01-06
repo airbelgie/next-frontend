@@ -17,7 +17,7 @@ export default function SignupPage() {
     const passwordConfirmation = formData.get("confirm-password");
 
     const response = await fetch(
-      "http://airbelgie.rbcdigital.co.uk:3008/auth/signup",
+      "https://airbelgie.rbcdigital.co.uk/auth/signup",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

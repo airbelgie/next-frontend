@@ -10,12 +10,11 @@ export default function LoginPage() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    console.log(formData);
     const emailAddress = formData.get("email");
     const password = formData.get("password");
 
     const response = await fetch(
-      "http://airbelgie.rbcdigital.co.uk:3008/auth/login",
+      "https://airbelgie.rbcdigital.co.uk/auth/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -24,7 +23,6 @@ export default function LoginPage() {
     );
 
     if (response.ok) {
-      console.log("test");
     } else {
       // Handle errors
     }
