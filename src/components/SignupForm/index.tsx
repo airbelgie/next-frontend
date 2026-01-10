@@ -30,7 +30,7 @@ export function SignupForm({
           <Input id="lastName" type="text" name="lastName" required />
         </Field>
         <Field>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
+          <FieldLabel htmlFor="emailAddress">Email</FieldLabel>
           <Input id="emailAddress" type="email" name="emailAddress" required />
           <FieldDescription>
             We&apos;ll use this to contact you. We will not share your email

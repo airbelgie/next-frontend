@@ -13,6 +13,9 @@
       "!.next",
       "!dist",
       "!build",
+      "!.claude",
+      "!playwright-report",
+      "!test-results",
       "!src/components/ui",
       "!**/*.css"
     ]
