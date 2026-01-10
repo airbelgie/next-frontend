@@ -198,7 +198,7 @@ src/
 - Form components use the Field system (`FieldGroup`, `Field`, `FieldLabel`, `FieldError`)
 - Variants handled via class-variance-authority (cva)
 
-**API Integration**: Auth endpoints at `https://airbelgie.rbcdigital.co.uk/auth/` (login, signup)
+**API Integration**: Auth endpoints configured via `NEXT_PUBLIC_API_URL` environment variable (defaults to `https://airbelgie.rbcdigital.co.uk`)
 
 **Build Output**: Configured for standalone deployment (Docker-ready)
 
@@ -211,13 +211,12 @@ src/
 
 ## Environment Variables
 
-```bash
-# .env.local (not committed)
-NEXT_PUBLIC_API_URL=https://airbelgie.rbcdigital.co.uk
-```
+**For environment setup and deployment instructions, see README.md.**
 
-- **NEXT_PUBLIC_** prefix: Exposes variable to browser (use sparingly)
-- **Server-only variables**: No prefix, accessed only in Server Components or API routes
+Required variables:
+- `NEXT_PUBLIC_API_URL` - API base URL (no fallback in code)
+
+The `.env.local` file is included in the repository with default values. See README.md for Vercel and other deployment platform configuration.
 
 ## Git Workflow
 

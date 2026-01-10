@@ -16,20 +16,18 @@ export default function SignupPage() {
     const password = formData.get("password");
     const passwordConfirmation = formData.get("confirm-password");
 
-    const response = await fetch(
-      "https://airbelgie.rbcdigital.co.uk/auth/signup",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          emailAddress,
-          password,
-          firstName,
-          lastName,
-          passwordConfirmation,
-        }),
-      },
-    );
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${apiUrl}/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        emailAddress,
+        password,
+        firstName,
+        lastName,
+        passwordConfirmation,
+      }),
+    });
 
     if (response.ok) {
       console.log("test");

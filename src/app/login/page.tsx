@@ -23,14 +23,12 @@ export default function LoginPage() {
     const password = formData.get("password");
 
     try {
-      const response = await fetch(
-        "https://airbelgie.rbcdigital.co.uk/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ emailAddress, password }),
-        },
-      );
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${apiUrl}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ emailAddress, password }),
+      });
 
       if (response.ok) {
         const data = await response.json();
